@@ -16,7 +16,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[7.0]
 
       ## 追加カラム
       t.string :name, null: false
-      t.text :introduction, null: false
+      t.text :introduction
       t.boolean :is_active, default: true
 
       ## Trackable
