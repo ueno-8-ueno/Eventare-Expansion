@@ -34,17 +34,22 @@
 
         <% elsif member_signed_in? %>
           <li class="nav-item">
-            <%= link_to root_path, class: 'nav-link text-dark' do %>
+            <%= link_to new_event_path, class: 'nav-link text-dark' do %>
                 <i class="fa-solid fa-plus" aria-hidden="true"></i> 投稿フォーム
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to root_path, class: 'nav-link text-dark' do %>
+            <%= link_to members_path, class: 'nav-link text-dark' do %>
+                <i class="fa-solid fa-user"></i> 会員一覧
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to events_path, class: 'nav-link text-dark' do %>
               <i class="fa-solid fa-globe"></i> みんなのTODO
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to root_path, class: 'nav-link text-dark' do %>
+            <%= link_to member_path(current_member), class: 'nav-link text-dark' do %>
               <i class="fas fa-user" aria-hidden="true"></i> マイページ
             <% end %>
           </li>
