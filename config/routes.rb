@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   # 会員ルーティング
   scope module: :public do
     get '/about' => 'homes#about', as: 'about'
+
+    resources :members, only: [:show, :edit, :index, :update]
+    get 'members/unregistration'
+    patch 'members/withdrawal'
   end
 
 
