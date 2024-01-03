@@ -27,7 +27,7 @@
           </li>
           
           <li class="nav-item">
-            <%= button_to destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: 'nav-link text-dark' do %>
+            <%= button_to destroy_admin_session_path, method: :delete, form: { data: { turbo_confirm: "本当にログアウトしますか？" } }, class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-out-alt" aria-hidden="true"></i> ログアウト
             <% end %>
           </li>
@@ -49,7 +49,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= button_to destroy_member_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: 'nav-link text-dark' do %>
+            <%= button_to destroy_member_session_path, method: :delete, form: { data: { turbo_confirm: "本当にログアウトしますか？" } }, class: 'nav-link text-dark' do %>
               <i class="fas fa-sign-out-alt" aria-hidden="true"></i> ログアウト
             <% end %>
           </li>
