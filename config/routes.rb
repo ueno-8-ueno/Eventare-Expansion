@@ -20,6 +20,10 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :index, :update]
     get 'members/unregistration'
     patch 'members/withdrawal'
+
+    resources :events, only: [:new, :index, :show, :edit, :create, :update, :destroy]
+    patch 'events/done'
+    delete 'events/unpaid'
   end
 
 
