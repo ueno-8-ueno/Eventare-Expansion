@@ -22,10 +22,10 @@ class Public::MembersController < ApplicationController
     end
 
     if @member.update(member_params)
-      flash[:notice] = "プロフィールの保存が完了しました"
+      flash[:notice] = "プロフィールの編集が完了しました"
       redirect_to member_path(current_member.id)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

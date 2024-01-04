@@ -9,7 +9,7 @@
     </div>
     <div class="form-body p-4">
     <!--バリデーションエラー部-->
-    <%= render "layouts/validation", obj: @member %>
+    <%= render "public/shared/validation", obj: @member %>
 
     <%= form_with model: @member do |f| %>
         <div class="mb-3">

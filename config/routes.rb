@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
 
     resources :members, only: [:show, :edit, :index, :update]
-    get 'members/unregistration'
-    patch 'members/withdrawal'
+    get 'members/:id/unregistration' => 'members#unregistration', as: 'member_unregistration'
+    patch 'members/:id/withdrawal' => 'members#withdrawal', as: 'member_withdrawal'
 
     resources :events, only: [:new, :index, :show, :edit, :create, :update, :destroy]
     patch 'events/done'
