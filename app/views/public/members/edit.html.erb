@@ -1,33 +1,37 @@
 <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
     <div class="text-dark bg-light p-4 mb-0">
-    <div class="text-right">
-        <%= link_to member_path(current_member), class:"btn btn-outline-secondary btn-sm mb-2" do %>
-        <i class="fa-solid fa-arrow-left"></i> 戻る
+        <div class="text-end">
+            <%= link_to "退会する", member_unregistration_path, class: "btn btn-danger btn-sm ml-5" %>
+        </div>
+        <div class="text-start">
+            <%= link_to member_path(current_member), class:"btn btn-outline-secondary btn-sm mb-2" do %>
+                <i class="fa-solid fa-arrow-left"></i> 戻る
+            <% end %>
+        </div>
+
+        <h5 class="text-center"><i class="fa-solid fa-gear"></i> プロフィール編集</h5>
+        </div>
+        <div class="form-body p-4">
+        <!--バリデーションエラー部-->
+        <%= render "public/shared/validation", obj: @member %>
+
+        <%= form_with model: @member do |f| %>
+            <div class="mb-3">
+                <h5><i class="fa-solid fa-user"></i> ユーザーネーム</h5>
+                <%= f.text_field :name, autofocus: true, placeholder:"名前"%>
+            </div>
+
+            <div class="mb-3">
+                <h5><i class="fa-solid fa-pen-fancy"></i> 自己紹介</h5>
+                <%= f.text_area :introduction, autofocus: true, placeholder:"自己紹介"%>
+            </div>
+
+            <div class="mb-3">
+                <h5><i class="fa-solid fa-image"></i> プロフィール画像</h5>
+                <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+            </div>
+
+            <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-info mt-4" %>
         <% end %>
-    </div>
-    <h5 class="text-center"><i class="fa-solid fa-gear"></i> プロフィール編集</h5>
-    </div>
-    <div class="form-body p-4">
-    <!--バリデーションエラー部-->
-    <%= render "public/shared/validation", obj: @member %>
-
-    <%= form_with model: @member do |f| %>
-        <div class="mb-3">
-        <h5><i class="fa-solid fa-user"></i> ユーザーネーム</h5>
-        <%= f.text_field :name, autofocus: true, placeholder:"名前"%>
-        </div>
-
-        <div class="mb-3">
-        <h5><i class="fa-solid fa-pen-fancy"></i> 自己紹介</h5>
-        <%= f.text_area :introduction, autofocus: true, placeholder:"自己紹介"%>
-        </div>
-
-        <div class="mb-3">
-        <h5><i class="fa-solid fa-image"></i> プロフィール画像</h5>
-        <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-        </div>
-
-        <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-info mt-4" %>
-    <% end %>
     </div>
 </div>

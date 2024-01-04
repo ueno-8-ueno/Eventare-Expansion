@@ -1,5 +1,5 @@
 class Public::MembersController < ApplicationController
-  before_action :is_matching_login_member, only: [:edit, :update]
+  before_action :is_matching_login_member, only: [:edit, :update, :unregistration, :withdrawal]
 
   def show
     @member = Member.find(params[:id])
@@ -33,6 +33,9 @@ class Public::MembersController < ApplicationController
   end
 
   def withdrawal
+    member = current_member
+    member.is_active = false
+    sign_out_and_redirect(current_member)
   end
 
   private
