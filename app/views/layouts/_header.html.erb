@@ -3,9 +3,9 @@
     <div class="container">
 
       <% if admin_signed_in? %>
-        <%= link_to "Eventare", admin_path, class: 'navbar-brand p-3' %>
+        <h1 style="font-family: cursive;"><%= link_to "Eventare", admin_path, class: 'navbar-brand p-3' %></h1>
       <% else %>
-        <%= link_to "Eventare", root_path, class: 'navbar-brand p-3' %>
+        <h1 style="font-family: cursive;"><%= link_to "Eventare", root_path, class: 'navbar-brand p-3' %></h1>
       <% end %>
       
       <ul class="navbar-nav ml-auto">

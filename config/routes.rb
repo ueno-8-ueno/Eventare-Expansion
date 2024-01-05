@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   # 管理者ルーティング
   namespace :admin do
     get '/' => 'homes#top'
+    resources :members, only: [:show, :update]
   end
 end
