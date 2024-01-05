@@ -1,0 +1,16 @@
+<div class="col-12 text-center">
+    <h4 class="p-3 border-bottom">ジャンル編集</h4>
+</div>
+
+<div class="col-10 mt-5 mx-auto">
+    <%= render "public/shared/validation", obj: @genre %>
+
+    <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+        <div class="field row mt-3">
+            <div class="col-2">ジャンル名</div>
+            <div class="col-3"><%= f.text_field :name, autofocus: true, placeholder: "ジャンル名" %></div>
+            <div class="col-2"><%= f.submit "変更を保存", class: "btn btn-success" %></div>
+        </div>
+    <% end %>
+
+</div>
