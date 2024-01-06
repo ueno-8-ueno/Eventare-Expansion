@@ -1,13 +1,23 @@
 class Public::EventsController < ApplicationController
+  before_action :is_matching_login_member, only: [:edit, :update]
+
   def new
     @event = Event.new
   end
 
   def create
+    @event = Event.new(event_params)
+    if @event.save
+      flash[:notice] = "イベントTODOの投稿が完了しました"
+      redirect_to event_path(@event)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def index
-    @events = Event.all
+    # 降順で, 20件ごとにページネーション
+    @events = Event.all.order(id: "DESC").page(params[:page]).per(20)
   end
 
   def show
@@ -29,5 +39,19 @@ class Public::EventsController < ApplicationController
   end
 
   def unpaid
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:name, :introduction, :start_at, :end_at)
+  end
+
+  # TODO編集画面へのアクセス制御
+  def is_matching_login_member
+    member = Event.find(params[:id]).member
+    unless member.id == current_member.id
+      redirect_to events_path
+    end
   end
 end

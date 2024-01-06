@@ -1,5 +1,5 @@
 <div class="card-list-container py-5">
-  <% events.reverse_each do |event| %>
+  <% events.each do |event| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">
       <div class="card-body">
         <div class="row">
@@ -20,4 +20,7 @@
       </div>
     </div>
   <% end %>
+
+  <!--降順で, 20件ずつページネーション-->
+  <%= paginate events.order(id: "DESC").page(params[:page]).per(20), theme: 'bootstrap-5' %>
 </div>

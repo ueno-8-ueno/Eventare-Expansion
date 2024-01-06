@@ -6,7 +6,8 @@ class Public::MembersController < ApplicationController
   end
 
   def index
-    @members = Member.all
+    # 降順で, 25件ごとにページネーション
+    @members = Member.all.order(id: "DESC").page(params[:page]).per(25)
   end
 
   def edit

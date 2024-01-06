@@ -1,6 +1,7 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
   def top
-    @members = Member.all
+    # 降順で, 25件ごとにページネーション
+    @members = Member.all.order(id: "DESC").page(params[:page]).per(25)
   end
 end
