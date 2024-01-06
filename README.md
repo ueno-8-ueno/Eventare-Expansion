@@ -37,3 +37,7 @@ $ docker-compose exec web rails assets:precompile
 
 ## バックエンド
 - Ruby on Rails (Ruby)
+
+## DB/インフラ
+- MySQL
+- Docker
