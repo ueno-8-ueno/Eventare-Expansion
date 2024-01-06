@@ -1,2 +1,44 @@
-<h1>Public::Events#edit</h1>
-<p>Find me in app/views/public/events/edit.html.erb</p>
+<div class="col-md-5 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
+    <div class="text-dark bg-light p-4 mb-0">
+    <div class="text-right">
+        <%= link_to event_path(@event), class:"btn btn-outline-secondary btn-sm mb-2" do %>
+        <i class="fa-solid fa-arrow-left"></i> 戻る
+        <% end %>
+    </div>
+    <h5 class="text-center"><i class="fa-solid fa-gear"></i> イベントTODO編集</h5>
+    </div>
+    <div class="form-body p-4">
+        <!--バリデーションエラー部-->
+        <%= render "public/shared/validation", obj: @event %>
+
+        <!--投稿フォーム部-->
+        <%= form_with model: @event do |f| %>
+            <div class="mb-3">
+                <h5><i class="far fa-flag"></i> イベント名</h5>
+                <%= f.text_field :name, autofocus: true, class:"form-control", placeholder:"イベント名" %>
+            </div>
+
+            <div class="mb-3">
+                <h5><i class="fa-solid fa-pen-fancy"></i> イベント詳細</h5>
+                <%= f.text_area :introduction, autofocus: true %>
+            </div>
+
+            <div class="mb-3">
+                <h5><i class="fa-solid fa-tag"></i> イベントのジャンル</h5>
+                <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: '選択してください'} %>
+            </div>
+
+            <div class="mb-3">
+                <h5><i class="fa-regular fa-clock"></i> イベント開始日時</h5>
+                <%= f.date_field :start_at %>
+            </div>
+
+            <div class="mb-3">
+                <h5><i class="fa-solid fa-clock"></i> イベント終了日時</h5>
+                <%= f.date_field :end_at %>
+            </div>
+
+            <%= f.submit "TODOを更新", class:"btn btn-lg btn-block btn-info mt-4" %>
+        <% end %>
+    </div>
+</div>

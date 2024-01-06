@@ -7,6 +7,7 @@ class Public::EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.member_id = current_member.id
     if @event.save
       flash[:notice] = "イベントTODOの投稿が完了しました"
       redirect_to event_path(@event)
@@ -29,10 +30,26 @@ class Public::EventsController < ApplicationController
   end
 
   def update
+    @event = Event.find(params[:id])
+
+    if @event.member != current_member
+      redirect_to member_path(current_member.id)
+      return
+    end
+
+    if @event.update(event_params)
+      flash[:notice] = "イベントTODOの更新が成功しました"
+      redirect_to event_path(@event)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @event = Event.find(params[:id])
+    @event.destroy
+    flash[:notice] = "イベントTODOを削除しました"
+    redirect_to events_path
   end
 
   def done
@@ -44,7 +61,7 @@ class Public::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :introduction, :start_at, :end_at)
+    params.require(:event).permit(:name, :introduction, :genre_id, :start_at, :end_at)
   end
 
   # TODO編集画面へのアクセス制御

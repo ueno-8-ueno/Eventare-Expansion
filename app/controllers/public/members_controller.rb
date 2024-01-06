@@ -3,6 +3,9 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
+
+    # 降順で, 20件ごとにページネーション
+    @events = @member.events.order(id: "DESC").page(params[:page]).per(20)
   end
 
   def index
