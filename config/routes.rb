@@ -22,8 +22,7 @@ Rails.application.routes.draw do
     patch 'members/:id/withdrawal' => 'members#withdrawal', as: 'member_withdrawal'
 
     resources :events, only: [:new, :index, :show, :edit, :create, :update, :destroy]
-    patch 'events/done'
-    delete 'events/unpaid'
+    patch 'events/:id/status' => 'events#status', as: 'event_status'
   end
 
 

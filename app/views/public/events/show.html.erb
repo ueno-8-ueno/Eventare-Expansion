@@ -31,6 +31,17 @@
         <p class="h5"><%= @event.genre.name %></p>
     </div>
 
+    <div class="p-3 w-75">
+        <% if @event.member == current_member %>
+            <h6 class="border-bottom"><i class="fa-solid fa-check"></i> 完了状態:</h6>
+            <% if @event.is_done %>
+                <p class="h5 text-success">完了</p>
+            <% else %>
+                <p class="h5 text-danger">未済</p>
+            <% end %>
+        <% end %>
+    </div>
+
     <div class="row p-3 w-100 text-right">
         <% if @event.member == current_member %>
             <div class="col-5">

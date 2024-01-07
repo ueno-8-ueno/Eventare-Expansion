@@ -52,11 +52,18 @@ class Public::EventsController < ApplicationController
     redirect_to events_path
   end
 
-  def done
+  def status
+    event = Event.find(params[:id])
+
+    if event.member != current_member
+      redirect_to member_path(current_member.id)
+      return
+    end
+
+    event.update(is_done: !event.is_done)
+    redirect_to member_path(current_member)
   end
 
-  def unpaid
-  end
 
   private
 

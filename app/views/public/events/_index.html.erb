@@ -9,12 +9,27 @@
               <span><i class="fa-solid fa-user"></i> <%= event.member.name %></span>
             <% end %>
           </div>
-          <div class="col-9 ml-5">
+          <div class="col-7 ml-5">
             <%= link_to(event_path(event.id), class:"text-dark") do %>
               <p class="card-title"> <strong><i class="far fa-flag"></i><span> <%= event.name %></span></strong></p>
               <p class="card-text"><i class="fa-solid fa-tag"></i> <%= event.genre.name %></p>
               <p class="card-text"><i class="fa-regular fa-clock"></i> <%= event.start_at %> ~ <%= event.end_at %></p>
             <% end %>
+          </div>
+          <div class="col-2">
+            <p class="card-text h1">
+                <% if event.member == current_member %>
+                  <% if event.is_done %>
+                    <%= link_to  event_status_path(event), data: { "turbo-method": :patch }, class:"link-dark" do %>
+                      <i class="fa-regular fa-circle-check"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to  event_status_path(event), data: { "turbo-method": :patch }, class:"link-dark" do %>
+                      <i class="fa-regular fa-circle"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </p>
           </div>
         </div>
       </div>
