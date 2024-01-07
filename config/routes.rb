@@ -35,5 +35,6 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :members, only: [:show, :update]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :events, only: [:index, :show]
   end
 end

@@ -1,4 +1,5 @@
 class Public::EventsController < ApplicationController
+  before_action :authenticate_member!
   before_action :is_matching_login_member, only: [:edit, :update]
 
   def new
