@@ -1,0 +1,7 @@
+<div class="float-end m-2">
+    <%= form_with url: events_path, method: :get do |f| %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <%= f.text_field :event_name, placeholder: "イベント名検索" %>
+        <%= f.submit "検索", class:"btn btn-secondary m-1" %>
+    <% end %>
+</div>

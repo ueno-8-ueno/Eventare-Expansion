@@ -18,8 +18,16 @@ class Public::EventsController < ApplicationController
   end
 
   def index
-    # 降順で, 20件ごとにページネーション
-    @events = Event.all.order(id: "DESC").page(params[:page]).per(20)
+    @search_msg = ""
+
+    if params[:event_name] && params[:event_name] != ""
+      # 検索結果を降順で, 20件ごとにページネーション
+      @events = Event.where("name like ?","%#{params[:event_name]}%").order(id: "DESC").page(params[:page]).per(20)
+      @search_msg = "「#{params[:event_name]}」で検索した結果は#{@events.count}件です"
+    else
+      # 降順で, 20件ごとにページネーション
+      @events = Event.all.order(id: "DESC").page(params[:page]).per(20)
+    end
   end
 
   def show

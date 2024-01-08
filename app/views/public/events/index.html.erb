@@ -1,5 +1,8 @@
 <div class="col-12 text-center">
     <h4 class="p-3 border-bottom">みんなのイベントTODO</h4>
+    <% if @search_msg != "" %>
+        <p class="text-secondary"><%= @search_msg %></p>
+    <% end %>
 </div>
 
 <%= render 'index', events: @events %>
