@@ -12,7 +12,7 @@
         <% if admin_signed_in? %>
           <li class="nav-item">
             <%= link_to admin_path, class: 'nav-link text-dark' do %>
-                <i class="fa-solid fa-user"></i> 会員一覧
+                <i class="fa-solid fa-users"></i> 会員一覧
             <% end %>
           </li>
           <li class="nav-item">
@@ -35,12 +35,12 @@
         <% elsif member_signed_in? %>
           <li class="nav-item">
             <%= link_to new_event_path, class: 'nav-link text-dark' do %>
-                <i class="fa-solid fa-plus" aria-hidden="true"></i> 投稿フォーム
+                <i class="fa-solid fa-magnifying-glass"></i> 検索
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to members_path, class: 'nav-link text-dark' do %>
-                <i class="fa-solid fa-user"></i> 会員一覧
+                <i class="fa-solid fa-users"></i> 会員一覧
             <% end %>
           </li>
           <li class="nav-item">

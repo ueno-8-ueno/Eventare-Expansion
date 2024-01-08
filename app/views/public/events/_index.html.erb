@@ -1,4 +1,10 @@
 <div class="card-list-container py-5">
+  <div class="text-end">
+    <%= link_to new_event_path, class: "btn btn-success btn-lg" do %>
+        <i class="fa-solid fa-circle-plus"></i> 投稿する
+    <% end %>
+  </div>
+
   <% events.each do |event| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">
       <div class="card-body">
