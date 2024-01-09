@@ -6,6 +6,9 @@
         <h1 style="font-family: cursive;"><%= link_to "Eventare", admin_path, class: 'navbar-brand p-3' %></h1>
       <% else %>
         <h1 style="font-family: cursive;"><%= link_to "Eventare", root_path, class: 'navbar-brand p-3' %></h1>
+      <% end %>
+
+      <% if member_signed_in? %>
         <%= render 'public/shared/search_bar' %>
       <% end %>
       

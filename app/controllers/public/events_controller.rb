@@ -21,13 +21,21 @@ class Public::EventsController < ApplicationController
     @search_msg = ""
 
     if params[:event_name] && params[:event_name] != ""
-      # 検索結果を降順で, 20件ごとにページネーション
+      # イベント名検索結果を降順で, 20件ごとにページネーション
       @events = Event.where("name like ?","%#{params[:event_name]}%").order(id: "DESC").page(params[:page]).per(20)
       @search_msg = "「#{params[:event_name]}」で検索した結果は#{@events.count}件です"
+
+    elsif params[:genre_name] && params[:genre_name] != ""
+      search_genre_id = Genre.find_by(name: params[:genre_name]).id
+      # ジャンル名検索結果を降順で, 20件ごとにページネーション
+      @events = Event.where(genre_id: search_genre_id).order(id: "DESC").page(params[:page]).per(20)
+      @search_msg = "ジャンル: #{params[:genre_name]} で検索した結果は#{@events.count}件です"
+
     else
       # 降順で, 20件ごとにページネーション
       @events = Event.all.order(id: "DESC").page(params[:page]).per(20)
     end
+
   end
 
   def show
@@ -70,7 +78,7 @@ class Public::EventsController < ApplicationController
     end
 
     event.update(is_done: !event.is_done)
-    redirect_to member_path(current_member)
+    redirect_to request.referer
   end
 
 
