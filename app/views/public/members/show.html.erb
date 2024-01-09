@@ -11,5 +11,16 @@
     <% end %>
 </div>
 
+<!--絞り込み-->
+<% if @member == current_member %>
+    <div class="mt-3 w-25 text-center">
+        <h6 class="p-1 border-bottom"><i class="fa-solid fa-plus"></i> イベントTODO絞り込み</h6>
+        <%= form_with url: member_path(@member), method: :get do |f| %>
+            <%= f.select :option, options_for_select([["全て表示", 1], ["未済のみ表示", 2], ["完了のみ表示", 3]], 1) %>
+            <%= f.submit "絞り込み", class: "btn btn-info btn-sm" %>
+        <% end %>
+    </div>
+<% end %>
+
 <!--投稿一覧-->
 <%= render 'public/events/index', events: @events %>

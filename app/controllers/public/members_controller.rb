@@ -7,6 +7,12 @@ class Public::MembersController < ApplicationController
 
     # 降順で, 20件ごとにページネーション
     @events = @member.events.order(id: "DESC").page(params[:page]).per(20)
+
+    if params[:option].to_i == 2
+      @events = @member.events.where(is_done: false).order(id: "DESC").page(params[:page]).per(20)
+    elsif params[:option].to_i == 3
+      @events = @member.events.where(is_done: true).order(id: "DESC").page(params[:page]).per(20)
+    end
   end
 
   def index
